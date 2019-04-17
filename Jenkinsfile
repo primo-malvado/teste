@@ -15,9 +15,8 @@ pipeline {
     }
     stage('publish') {
       steps {
-      
-        sh 'npm publish'
         catchError() {
+          sh 'npm publish'
           emailext(subject: 'eroor ', body: 'nao compilou', attachLog: true, from: 'rcosta@grupopie.com', to: 'rcosta@grupopie.com', replyTo: 'rcosta@grupopie.com')
         }
 
