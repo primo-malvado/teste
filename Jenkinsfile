@@ -7,5 +7,12 @@ pipeline {
         sh 'echo "aaa"'
       }
     }
+    stage('npm install') {
+      steps {
+        sh '''npm install
+npm run build
+'''
+      }
+    }
   }
 }
