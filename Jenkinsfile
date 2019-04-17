@@ -15,11 +15,10 @@ pipeline {
     }
     stage('publish') {
       steps {
-        try{
-          sh 'npm publish'
-        }catch(err){
-          currentBuild.result = 'FAILURE'
-          emailext(subject: 'error ', body: 'nao compilou', attachLog: true, from: 'rcosta@grupopie.com', to: 'rcosta@grupopie.com', replyTo: 'rcosta@grupopie.com')
+      
+        sh 'npm publish'
+        catchError() {
+          emailext(subject: 'eroor ', body: 'nao compilou', attachLog: true, from: 'rcosta@grupopie.com', to: 'rcosta@grupopie.com', replyTo: 'rcosta@grupopie.com')
         }
 
       }
